@@ -20,7 +20,7 @@ use App\Http\Controllers\CursoController;
 Route::get('/', function () {
     return redirect()->route('login');
 });
-
+//para rutas importantes meter dentro de este grupo de middleware, para que solo puedan acceder usuarios autenticados y verificados
 Route::middleware(['auth', 'verified'])->group(function () {
     route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
     Route::get('/dashboard', function () {
