@@ -8,6 +8,6 @@ class RegistroController extends Controller
 {
     public function index()
     {
-        return view('registro');
+        return view('auth.register');
     }
 }

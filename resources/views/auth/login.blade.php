@@ -97,6 +97,10 @@
                                         <!--end::Indicator progress-->
                                     </button>
                                 </div>
+                                 <div class="text-gray-500 text-center fw-semibold fs-6">
+                                ¿Ya tienes cuenta?
+                                <a href="{{ route('registro') }}" class="link-primary">Inicia sesión</a>
+                            </div>
                             </div>
                         </form>
                     </div>
