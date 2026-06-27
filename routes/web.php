@@ -28,7 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
+Route::post('/registro', [RegistroController::class, 'index'])->name('registro');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 

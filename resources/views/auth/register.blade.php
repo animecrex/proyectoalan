@@ -9,15 +9,12 @@
     <meta name="keywords" content="gestiones" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="google" content="notranslate">
-    <meta property="og:locale" content="es_MX" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="ATENCIÓN CIUDADANA - Gestiones" />
-    <meta property="og:url" content="https://keenthemes.com/metronic" />
-    <meta property="og:site_name" content="ATENCIÓN CIUDADANA - Gestiones" />
+    <meta name="base-url" content="{{ url('/') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="canonical" href="http://preview.keenthemes.comauthentication/layouts/fancy/sign-in.html" />
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
     <!--begin::Fonts(mandatory for all pages)-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
@@ -51,11 +48,10 @@
                     <div class="d-flex flex-stack py-2">
                     </div>
                     <div class="py-20">
-                        <form method="POST" action="{{ route('register') }}" class="form w-100" novalidate>
+                        <form id="registerForm" method="POST" class="form w-100" novalidate>
                             @csrf
 
-                            ```
-                            <!-- Título -->
+                            
                             <div class="text-center mb-11">
                                 <h1 class="text-gray-900 fw-bolder mb-3">Crear Cuenta</h1>
                                 <div class="text-gray-500 fw-semibold fs-6">Regístrate para continuar</div>
@@ -63,31 +59,36 @@
 
                             <!-- Nombre -->
                             <div class="fv-row mb-8">
-                                <input type="text" placeholder="Nombre completo" name="name"
+                                <input type="text" placeholder="Nombre completo" id="name" name="name"
+                                    class="form-control bg-transparent" required />
+                            </div>
+                            <!-- Usuario -->
+                            <div class="fv-row mb-8">
+                                <input type="text" placeholder="Usuario" maxlength="20" id="usuario" name="usuario"
                                     class="form-control bg-transparent" required />
                             </div>
 
                             <!-- Email -->
                             <div class="fv-row mb-8">
-                                <input type="email" placeholder="Correo electrónico" name="email"
+                                <input type="email" placeholder="Correo electrónico" id="email" name="email"
                                     class="form-control bg-transparent" required />
                             </div>
 
                             <!-- Password -->
                             <div class="fv-row mb-8">
-                                <input type="password" placeholder="Contraseña" name="password"
+                                <input type="password" placeholder="Contraseña" id="password" name="password"
                                     class="form-control bg-transparent" required />
                             </div>
 
                             <!-- Confirm Password -->
                             <div class="fv-row mb-8">
-                                <input type="password" placeholder="Confirmar contraseña" name="password_confirmation"
-                                    class="form-control bg-transparent" required />
+                                <input type="password" placeholder="Confirmar contraseña" id="password_confirmation"
+                                    name="password_confirmation" class="form-control bg-transparent" required />
                             </div>
 
                             <!-- Botón -->
                             <div class="d-grid mb-10">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" id="registerButton" class="btn btn-primary">
                                     <span class="indicator-label">Registrarse</span>
                                 </button>
                             </div>
@@ -97,7 +98,7 @@
                                 ¿Ya tienes cuenta?
                                 <a href="{{ route('login') }}" class="link-primary">Inicia sesión</a>
                             </div>
-                            ```
+                            
 
                         </form>
 
@@ -123,7 +124,6 @@
         </script>
         <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
         <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
-        <script src="{{ asset('js/auth/auth_validate.js') }}"></script>
         <script>
             history.pushState(null, null, location.href);
 
@@ -131,7 +131,11 @@
                 history.go(1);
             };
         </script>
-
+        
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="{{ asset('assets/js/registro/registro.js?v=1.0.2') }}"></script>
+    </div>
 </body>
+
 
 </html>

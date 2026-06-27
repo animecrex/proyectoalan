@@ -3391,66 +3391,7 @@ License: For each use you must have a valid license purchased only from above li
                                 </div>
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
-                                <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                                    data-kt-menu-placement="left-start" data-kt-menu-offset="0, 0">
-                                    <a href="#" class="menu-link px-5">
-                                        <span class="menu-title position-relative">Language
-                                            <span
-                                                class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
-                                                <img class="w-15px h-15px rounded-1 ms-2"
-                                                    src="assets/media/flags/united-states.svg"
-                                                    alt="" /></span></span>
-                                    </a>
-                                    <!--begin::Menu sub-->
-                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="account/settings.html" class="menu-link d-flex px-5 active">
-                                                <span class="symbol symbol-20px me-4">
-                                                    <img class="rounded-1"
-                                                        src="assets/media/flags/united-states.svg" alt="" />
-                                                </span>English</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="account/settings.html" class="menu-link d-flex px-5">
-                                                <span class="symbol symbol-20px me-4">
-                                                    <img class="rounded-1" src="assets/media/flags/spain.svg"
-                                                        alt="" />
-                                                </span>Spanish</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="account/settings.html" class="menu-link d-flex px-5">
-                                                <span class="symbol symbol-20px me-4">
-                                                    <img class="rounded-1" src="assets/media/flags/germany.svg"
-                                                        alt="" />
-                                                </span>German</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="account/settings.html" class="menu-link d-flex px-5">
-                                                <span class="symbol symbol-20px me-4">
-                                                    <img class="rounded-1" src="assets/media/flags/japan.svg"
-                                                        alt="" />
-                                                </span>Japanese</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="account/settings.html" class="menu-link d-flex px-5">
-                                                <span class="symbol symbol-20px me-4">
-                                                    <img class="rounded-1" src="assets/media/flags/france.svg"
-                                                        alt="" />
-                                                </span>French</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                    </div>
-                                    <!--end::Menu sub-->
-                                </div>
+                                
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-5 my-1">
@@ -3459,8 +3400,16 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-5">
-                                    <a href="authentication/layouts/corporate/sign-in.html"
-                                        class="menu-link px-5">Sign Out</a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
+                                 
                                 </div>
                                 <!--end::Menu item-->
                             </div>
@@ -3490,9 +3439,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <h1
                                         class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
                                         Cursos Disponibles
-                                        <!--begin::Description-->
-                                        <span class="page-desc text-muted fs-7 fw-semibold pt-2">Statistics &
-                                            Reports</span>
+                            
                                         <!--end::Description-->
                                     </h1>
                                     <!--end::Title-->
@@ -4287,15 +4234,10 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--end::Menu-->
                                     </div>
                                     <!--end::Search-->
-                                    <a href="#"
-                                        class="btn btn-icon btn-sm flex-shrink-0 h-40px w-40px bg-body"
-                                        id="kt_drawer_chat_toggle">
-                                        <i class="ki-outline ki-messages fs-1 text-primary"></i>
-                                    </a>
+                                    
                                     <!--begin::Primary button-->
                                     <a href="#" class="btn btn-flex btn-sm h-40px fw-bold btn-primary"
-                                        data-bs-toggle="modal" data-bs-target="#kt_modal_users_search">Invite
-                                        Agent</a>
+                                        data-bs-toggle="modal" data-bs-target="#kt_modal_users_search">Profesores</a>
                                     <!--end::Primary button-->
                                 </div>
                                 <!--end::Actions-->
@@ -4315,13 +4257,13 @@ License: For each use you must have a valid license purchased only from above li
                             class="app-container container-xxl d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
                             <!--begin::Copyright-->
                             <div class="text-gray-900 order-2 order-md-1">
-                                <span class="text-muted fw-semibold me-1">2025&copy;</span>
+                                <span class="text-muted fw-semibold me-1">2026&copy;</span>
                                 <a href="https://keenthemes.com" target="_blank"
-                                    class="text-gray-800 text-hover-primary">Keenthemes</a>
+                                    class="text-gray-800 text-hover-primary">Curso+</a>
                             </div>
                             <!--end::Copyright-->
                             <!--begin::Menu-->
-                            <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+                            <!--porsi<ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
                                 <li class="menu-item">
                                     <a href="https://keenthemes.com" target="_blank"
                                         class="menu-link px-2">About</a>
@@ -4334,7 +4276,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <a href="https://1.envato.market/EA4JP" target="_blank"
                                         class="menu-link px-2">Purchase</a>
                                 </li>
-                            </ul>
+                            </ul>-->
                             <!--end::Menu-->
                         </div>
                         <!--end::Footer container-->
@@ -5055,11 +4997,7 @@ License: For each use you must have a valid license purchased only from above li
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Details-->
-                                <div class="ms-3">
-                                    <a href="#"
-                                        class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian Cox</a>
-                                    <span class="text-muted fs-7 mb-1">2 mins</span>
-                                </div>
+                                
                                 <!--end::Details-->
                             </div>
                             <!--end::User-->
