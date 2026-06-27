@@ -20,6 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//para rutas importantes meter dentro de este grupo de middleware, para que solo puedan acceder usuarios autenticados y verificados
+Route::middleware(['auth', 'verified'])->group(function () {
+    route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
+
+});
+
 Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
