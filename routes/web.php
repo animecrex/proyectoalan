@@ -4,7 +4,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\CursoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +17,8 @@ use App\Http\Controllers\CursoController;
 */
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('welcome');
 });
-route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
 
 Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
 
