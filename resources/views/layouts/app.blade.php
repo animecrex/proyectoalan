@@ -1,36 +1,53 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="es">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <title>Curso+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+    @yield('styles')
+</head>
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+<body id="kt_app_body" class="app-default">
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+<div class="d-flex flex-column flex-root app-root">
+    <div class="app-page flex-column flex-column-fluid">
+
+        {{-- HEADER --}}
+        @include('partials.header')
+
+        {{-- WRAPPER (CLAVE) --}}
+        <div class="app-wrapper d-flex">
+
+            {{-- SIDEBAR --}}
+            @include('partials.sidebar')
+
+            {{-- MAIN --}}
+            <div class="app-main flex-column flex-row-fluid">
+
+                {{-- CONTENT --}}
+                <div class="app-content flex-column-fluid p-5">
+                    @yield('content')
+                </div>
+
+            </div>
+
         </div>
-    </body>
+
+        {{-- FOOTER --}}
+        @include('partials.footer')
+
+    </div>
+</div>
+
+<script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
+<script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
+
+@yield('javascript')
+
+</body>
 </html>

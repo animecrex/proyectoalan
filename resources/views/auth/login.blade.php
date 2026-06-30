@@ -98,8 +98,8 @@
                                     </button>
                                 </div>
                                  <div class="text-gray-500 text-center fw-semibold fs-6">
-                                ¿Ya tienes cuenta?
-                                <a href="{{ route('registro') }}" class="link-primary">Inicia sesión</a>
+                                No tienes cuenta?
+                                <a href="{{ route('registro') }}" class="link-primary">Registrate</a>
                             </div>
                             </div>
                         </form>
@@ -125,7 +125,6 @@
         </script>
         <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
         <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
-        <script src="{{ asset('js/auth/auth_validate.js') }}"></script>
         <script>
             history.pushState(null, null, location.href);
 
