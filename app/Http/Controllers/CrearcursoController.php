@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Curso;
+use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Support\Facades\Auth;
+use DateTime;
+use App\Models\Beneficiarioventa;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Hamcrest\Type\IsNumeric;
+use Illuminate\Support\Facades\Log;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Hash;
+
+class CrearcursoController extends Controller
+{
+    public function vista()
+    {
+        return view('crearcurso.crearcursos');
+    }
+
+
+
+    public function registrar(Request $request)
+    {
+        $request->validate([
+            'nombre' => ['required', 'string', 'max:50'],
+            'desc' => ['required', 'string', 'max:100'],
+            'max_alumnos' => ['required', 'integer'],
+            'maestro' => ['required', 'string', 'max:50'],
+            'horas' => ['required', 'integer', 'max:100'],
+            'imagen' => ['nullable', 'image'],
+            'costo' => ['required', 'numeric', 'min:0'],
+        ]);
+
+        $rutaDocumento = null;
+
+        if ($request->hasFile('imagen')) {
+
+            $imagen = $request->file('imagen');
+
+            $nombreimagen = time() . '.' . $imagen->getClientOriginalExtension();
+            $ruta = storage_path('app/public/images/' . $nombreimagen);
+
+            // Crear imagen con Intervention v2
+            $img = Image::make($imagen)->resize(300, 300);
+
+            $img->save($ruta);
+
+            $rutaDocumento = 'images/' . $nombreimagen;
+        }
+
+        $crearcurso = Curso::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->desc,
+            'cant_alumnos' => $request->max_alumnos,
+            'maestro' => $request->maestro,
+            'horas' => $request->horas,
+            'imagen' => $rutaDocumento,
+            'costo' => $request->costo,
+        ]);
+
+        return response()->json([
+            'message' => 'Curso registrado correctamente'
+        ]);
+    }
+
+    public function traercursos()
+    {
+        $cursos = Curso::all();
+        return response()->json($cursos);
+    }
+}
