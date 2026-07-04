@@ -39,7 +39,10 @@
                 <form name="" id="" class="form" method="POST" enctype="multipart/form-data"
                     autocomplete="off">
                     <div class="d-flex flex-column flex-column-fluid">
+
                         @include('cursos.cursodis')
+]
+         
                     </div>
                     <br>
                 </form>
