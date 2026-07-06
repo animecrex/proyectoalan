@@ -11,29 +11,37 @@ use App\Http\Controllers\CursoController;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
 //para rutas importantes meter dentro de este grupo de middleware, para que solo puedan acceder usuarios autenticados y verificados
 Route::middleware(['auth', 'verified'])->group(function () {
+
     route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
     route::get('/crearcurso', [CrearcursoController::class, 'vista'])->name('crearcurso');
     route::post('/registrarcurso', [CrearcursoController::class, 'registrar'])->name('registrarcurso');
     Route::get('/crearcurso/traercursos', [CrearcursoController::class, 'traercursos']);
     Route::get('/curso/traercursos', [CrearcursoController::class, 'traercursos']);
     
+ 
 });
 
 Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+
+
+// Ruta para ver el apartado de maestros
+Route::get('/maestros', function () {
+    return view('maestros.index');
+})->name('maestros');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
