@@ -7,11 +7,10 @@
         }
     </style>
     <meta name="base-url" content="{{ url('') }}">
-    <meta name="base-url" content="http://localhost/proyectoalan">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/estilos.css') }}">
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 @endsection
@@ -36,15 +35,28 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-                <form name="" id="" class="form" method="POST" enctype="multipart/form-data"
+                <form name="" id="registrarcurso" class="form" method="POST" enctype="multipart/form-data"
                     autocomplete="off">
                     <div class="d-flex flex-column flex-column-fluid">
+                        @include('crearcurso.crearcurs')
 
-                        @include('cursos.cursodis')
-]
-         
                     </div>
                     <br>
+
+                    <div class="col-md-12 row mb-20 py-2">
+                        <div class=" text-center">
+                            <button type="submit" name="guardar_curso" id="guardar_curso"
+                                class="btn btn-secondary btn-lg btn-block mt-15">
+                                <span class="indicator-label">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <span id="btn-text-submit">Guardar</span>
+                                </span>
+                                <span class="indicator-progress">Espere ...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                    </div>
+                    @include('crearcurso.listadecurso')
                 </form>
             </div>
         </div>
@@ -60,9 +72,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <script src=" https://cdn.jsdelivr.net/npm/jquery.repeater@1.2.1/jquery.repeater.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 
     <script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/cursoss/cursos.js') }}"></script>
+    <script src="{{ asset('assets/js/cursos/curso.js') }}"></script>
 @endsection
