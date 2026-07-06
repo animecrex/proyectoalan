@@ -40,7 +40,7 @@
                     autocomplete="off">
                     <div class="d-flex flex-column flex-column-fluid">
 
-                        @include('cursos.cursodis')
+                        @include('maestros.index')
 
          
                     </div>
