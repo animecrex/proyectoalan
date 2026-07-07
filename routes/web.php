@@ -23,9 +23,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
     route::get('/crearcurso', [CrearcursoController::class, 'vista'])->name('crearcurso');
+    
     route::post('/registrarcurso', [CrearcursoController::class, 'registrar'])->name('registrarcurso');
     Route::get('/crearcurso/traercursos', [CrearcursoController::class, 'traercursos']);
     Route::get('/curso/traercursos', [CrearcursoController::class, 'traercursos']);
+    Route::get('/detallescurso/{id}', [CrearcursoController::class, 'detallescurso'])->name('detallescurso');
     Route::get('/maestros', [MaestrosController::class, 'indexmaestros'])->name('maestros');
  
 });

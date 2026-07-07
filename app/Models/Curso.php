@@ -18,7 +18,11 @@ class Curso extends Model
         'maestro',
         'horas',
         'imagen',
-        'costo'
+        'costo',
+        'fecha_inicio',
+        'fecha_fin',
+        'objetivos',
+        'requisitos',
     ];
 
     public $timestamps = false;

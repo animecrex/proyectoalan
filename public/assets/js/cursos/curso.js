@@ -11,12 +11,27 @@ $("#guardar_curso").on("click", function (event) {
     formData.append("maestro", $("#maestro").val());
     formData.append("horas", $("#horas").val());
     formData.append("costo", $("#costo").val());
+    formData.append("fecha_fin", $("#fecha_fin").val());
+    formData.append("objetivos", $("#objetivos").val());
+    formData.append("requisitos", $("#requisitos").val());
+    formData.append("fecha_inicio", $("#fecha_inicio").val());
+    
 
     // 🔥 ESTA ES LA CLAVE
     let imagen = $("#imagen")[0].files[0];
 
     if (imagen !== undefined) {
         formData.append("imagen", imagen);
+    }
+
+    if(formData.get("nombre") === "" || formData.get("desc") === "" || formData.get("max_alumnos") === "" || formData.get("maestro") === "" || formData.get("horas") === "" || formData.get("costo") === "" || formData.get("fecha_fin") === "" || formData.get("objetivos") === "" || formData.get("requisitos") === "" || formData.get("fecha_inicio") === ""){
+        Swal.fire({
+            icon: "warning",
+            title: "Campos obligatorios",
+            text: "Completa los campos requeridos",
+            confirmButtonColor: "#4f46e5"
+        });
+        return;
     }
 
     $.ajax({
@@ -32,7 +47,13 @@ $("#guardar_curso").on("click", function (event) {
 
         success: function (response) {
             console.log(response);
-            alert("Guardado correctamente");
+            cargarTodos(); // 🔥 recarga sin refrescar página
+            Swal.fire({
+                icon: "success",
+                title: "Curso registrado correctamente",
+                showConfirmButton: false,
+                timer: 1500,
+            });
         },
 
         error: function (xhr) {
@@ -42,10 +63,12 @@ $("#guardar_curso").on("click", function (event) {
 });
 
 $(document).ready(function () {
-
-    window.t = $('#dt_search').DataTable({
+    window.t = $("#dt_search").DataTable({
         responsive: true,
         autoWidth: false,
+        language: {
+            url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+        },
     });
 
     cargarTodos();
@@ -57,24 +80,24 @@ function cargarTodos() {
         type: "GET",
         dataType: "json",
         success: function (res) {
-
             console.log(res);
 
-            let dataSet = res.map((r) => [
-                r.nombre,
-                r.maestro,
-                r.descripcion,
-                r.costo,
+            let dataSet = [];
 
-                r.imagen
-                    ? `<img src="${BASE_URL}/storage/${r.imagen}" width="50">`
-                    : 'Sin imagen',
-
-                `<button type="button" class="btn btn-primary btn-seleccionar"
-                    data-id="${r.id}">
-                    Seleccionar
-                </button>`
-            ]);
+            res.forEach((r) => {
+                dataSet.push([
+                    `<strong>${r.nombre}</strong>`,
+                    r.maestro,
+                    r.descripcion,
+                    `<span class="badge-costo">$${r.costo}</span>`,
+                    `<img src="${BASE_URL}/storage/${r.imagen}" class="img-curso">`,
+                    `
+                    <a href="${BASE_URL}/detallescurso/${r.id}" class="btn btn-action btn-ver">Ver</a>
+                    <button class="btn btn-action btn-editar">Editar</button>
+                    <button class="btn btn-action btn-eliminar">Eliminar</button>
+                    `,
+                ]);
+            });
 
             window.t.clear().rows.add(dataSet).draw();
         },

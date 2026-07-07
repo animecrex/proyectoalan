@@ -73,4 +73,10 @@ class CrearcursoController extends Controller
         $cursos = Curso::all();
         return response()->json($cursos);
     }
+
+    public function detallescurso($id)
+    {
+        $curso = Curso::findOrFail($id);
+        return view('cursos.detalles', compact('curso'));
+    }
 }

@@ -7,7 +7,7 @@
 
         <div id="kt_app_toolbar" class="app-toolbar py-4 py-lg-8" data-kt-sticky="true"
             data-kt-sticky-name="app-toolbar-sticky" data-kt-sticky-offset="{default: 'false', lg: '300px'}">
-            \
+            
             <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack flex-wrap">
                 <div class="d-flex ms-auto align-items-right gap-2 gap-lg-3">
                     <!--begin::Search-->
@@ -134,23 +134,7 @@
                             </div>
 
                             <!-- ITEM 2: CURSOS -->
-                            <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                                data-kt-menu-placement="right-start" class="menu-item py-2">
-
-                                <span class="menu-link menu-center">
-                                    <span class="menu-icon me-0">
-                                        <i class="ki-outline ki-book fs-2x"></i>
-                                    </span>
-                                </span>
-
-                                <div class="menu-sub menu-sub-dropdown px-2 py-4 w-250px mh-75 overflow-auto">
-                                    <div class="menu-item">
-                                        <div class="menu-content">
-                                            <span class="menu-section fs-5 fw-bolder ps-1 py-1">Todos los cursos</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                             <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                 data-kt-menu-placement="right-start" class="menu-item py-2">
