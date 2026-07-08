@@ -31,6 +31,7 @@
     transition: all 0.3s ease;
         }
 
+<<<<<<< Updated upstream
         .form-control-solid:focus {
             transform: scale(1.02);
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.2);
@@ -62,6 +63,74 @@
                 opacity: 0;
                 transform: translateY(15px);
             }
+=======
+                @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <div class="fv-row mb-5">
+            <input type="text" placeholder="Nombre del maestro" name="nombre" id="nombre"
+                value="{{ old('nombre') }}" autocomplete="off" class="form-control form-control-solid" />
+
+            @error('nombre')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="fv-row mb-5">
+            <input type="text" placeholder="Apellido paterno" name="apellido_paterno" id="apellido_paterno"
+                value="{{ old('apellido_paterno') }}" autocomplete="off" class="form-control form-control-solid" />
+
+            @error('apellido_paterno')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="fv-row mb-5">
+            <input type="text" placeholder="Apellido materno" name="apellido_materno" id="apellido_materno"
+                value="{{ old('apellido_materno') }}" autocomplete="off" class="form-control form-control-solid" />
+
+            @error('apellido_materno')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="fv-row mb-5">
+            <input type="email" placeholder="Correo electrónico" name="correo" id="correo"
+                value="{{ old('correo') }}" autocomplete="off" class="form-control form-control-solid" />
+
+            @error('correo')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="fv-row mb-5">
+            <input type="text" placeholder="Materia que imparte" name="materia" id="materia"
+                value="{{ old('materia') }}" autocomplete="off" class="form-control form-control-solid" />
+
+            @error('materia')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="fv-row mb-7">
+            <select name="turno" id="turno" class="form-control form-control-solid">
+                <option value="">Selecciona el turno</option>
+                <option value="Matutino" {{ old('turno') == 'Matutino' ? 'selected' : '' }}>Matutino</option>
+                <option value="Vespertino" {{ old('turno') == 'Vespertino' ? 'selected' : '' }}>Vespertino</option>
+            </select>
+
+            @error('turno')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+     
+        <button type="submit" id="btnAgregarMaestro" class="btn btn-primary">
+            Agregar maestro
+        </button>
+>>>>>>> Stashed changes
 
             to {
                 opacity: 1;
@@ -76,6 +145,7 @@
 <!--end::Head-->
 <!--begin::Body-->
 
+<<<<<<< Updated upstream
 <body id="kt_body" class="app-blank">
 
     <div class="d-flex flex-column flex-root" id="kt_app_root">
@@ -190,6 +260,36 @@
                         alt="" />
 
                 </div>
+=======
+            <div class="table-responsive">
+                <table class="table table-row-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre completo</th>
+                            <th>Correo</th>
+                            <th>Materia</th>
+                            <th>Turno</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tablaMaestros">
+                        @forelse($maestros as $maestro)
+                            <tr class="fila-animada">
+                                <td>{{ $maestro->nombre }} {{ $maestro->apellido_paterno }} {{ $maestro->apellido_materno }}</td>
+                                <td>{{ $maestro->correo }}</td>
+                                <td>{{ $maestro->materia }}</td>
+                                <td>{{ $maestro->turno }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center text-muted">
+                                    No hay maestros registrados.
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+>>>>>>> Stashed changes
             </div>
         </div>
 
