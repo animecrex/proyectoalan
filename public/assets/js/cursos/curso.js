@@ -15,7 +15,6 @@ $("#guardar_curso").on("click", function (event) {
     formData.append("objetivos", $("#objetivos").val());
     formData.append("requisitos", $("#requisitos").val());
     formData.append("fecha_inicio", $("#fecha_inicio").val());
-    
 
     // 🔥 ESTA ES LA CLAVE
     let imagen = $("#imagen")[0].files[0];
@@ -24,12 +23,23 @@ $("#guardar_curso").on("click", function (event) {
         formData.append("imagen", imagen);
     }
 
-    if(formData.get("nombre") === "" || formData.get("desc") === "" || formData.get("max_alumnos") === "" || formData.get("maestro") === "" || formData.get("horas") === "" || formData.get("costo") === "" || formData.get("fecha_fin") === "" || formData.get("objetivos") === "" || formData.get("requisitos") === "" || formData.get("fecha_inicio") === ""){
+    if (
+        formData.get("nombre") === "" ||
+        formData.get("desc") === "" ||
+        formData.get("max_alumnos") === "" ||
+        formData.get("maestro") === "" ||
+        formData.get("horas") === "" ||
+        formData.get("costo") === "" ||
+        formData.get("fecha_fin") === "" ||
+        formData.get("objetivos") === "" ||
+        formData.get("requisitos") === "" ||
+        formData.get("fecha_inicio") === ""
+    ) {
         Swal.fire({
             icon: "warning",
             title: "Campos obligatorios",
             text: "Completa los campos requeridos",
-            confirmButtonColor: "#4f46e5"
+            confirmButtonColor: "#4f46e5",
         });
         return;
     }
@@ -93,8 +103,7 @@ function cargarTodos() {
                     `<img src="${BASE_URL}/storage/${r.imagen}" class="img-curso">`,
                     `
                     <a href="${BASE_URL}/detallescurso/${r.id}" class="btn btn-action btn-ver">Ver</a>
-                    <button class="btn btn-action btn-editar">Editar</button>
-                    <button class="btn btn-action btn-eliminar">Eliminar</button>
+                    <button type="button" class="btn btn-action btn-eliminar" data-id="${r.id}">Eliminar</button>
                     `,
                 ]);
             });
@@ -104,5 +113,36 @@ function cargarTodos() {
         error: function (xhr) {
             console.error("ERROR:", xhr.responseText);
         },
+    });
+}
+
+
+$(document).on("click", ".btn-eliminar", function () {
+    let id = $(this).data("id");
+
+    eliminarCurso(id);
+});
+
+function eliminarCurso(id) {
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `${BASE_URL}/crearcurso/eliminarcurso/${id}`,
+                type: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                success: function () {
+                    cargarTodos();
+                    Swal.fire("Eliminado", "Curso eliminado correctamente", "success");
+                },
+            });
+        }
     });
 }

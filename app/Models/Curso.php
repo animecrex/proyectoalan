@@ -23,6 +23,7 @@ class Curso extends Model
         'fecha_fin',
         'objetivos',
         'requisitos',
+        'user_id',
     ];
 
     public $timestamps = false;

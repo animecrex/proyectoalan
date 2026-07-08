@@ -61,14 +61,41 @@ class CrearcursoController extends Controller
             'horas' => $request->horas,
             'imagen' => $rutaDocumento,
             'costo' => $request->costo,
+            'fecha_inicio' => $request->fecha_inicio,
+            'fecha_fin' => $request->fecha_fin,
+            'objetivos' => $request->objetivos,
+            'requisitos' => $request->requisitos,
+            'user_id' => Auth::id(),
         ]);
+
 
         return response()->json([
             'message' => 'Curso registrado correctamente'
         ]);
     }
 
+    public function eliminar($id)
+    {
+        $curso = Curso::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        $curso->delete();
+
+        return response()->json([
+            'message' => 'Curso eliminado correctamente'
+        ]);
+    }
+
+
+
     public function traercursos()
+    {
+        $cursos = Curso::where('user_id', Auth::id())->get();
+        return response()->json($cursos);
+    }
+
+   public function traertodoscursos()
     {
         $cursos = Curso::all();
         return response()->json($cursos);

@@ -2,7 +2,7 @@
     #contenedor-cursos {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-        gap: 25px;
+        gap: 20px;
         padding: 30px;
     }
 

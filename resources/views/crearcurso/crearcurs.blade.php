@@ -89,7 +89,7 @@
         </div>
 
         <div class="col-12 col-sm-6 col-lg-4">
-            <label class="form-label">Horas</label>
+            <label class="form-label">Horas por clase</label>
             <input type="number" id="horas" class="form-control">
         </div>
 
