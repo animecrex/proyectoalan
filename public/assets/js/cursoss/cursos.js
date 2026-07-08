@@ -14,30 +14,30 @@ function cargarTodos() {
 
             res.forEach((r) => {
                 html += `
-                <div class="card">
-                    <div class="img" >
-                        <img  src="${BASE_URL}/storage/${r.imagen}" >
-                    </div>
-
-                    <div class="text">
-                        <p class="h3">${r.nombre}</p>
-                        <p class="p">${r.descripcion}</p>
-
-                        <div class="icon-box">
-                            <p class="span">Maestro: ${r.maestro}</p>
+                    <div class="card">
+                        <div class="img">
+                            <img src="${BASE_URL}/storage/${r.imagen}">
                         </div>
 
-                        <div class="icon-box">
-                            <p class="span">Costo: $${r.costo}</p>
-                        </div>
+                        <div class="text">
+                            <p class="h3">${r.nombre}</p>
+                            <p class="p">${r.descripcion}</p>
 
-                        <button class="btn btn-primary btn-seleccionar"
-                            data-id="${r.id}">
-                            Seleccionar
-                        </button>
+                            <div class="icon-box">
+                                <p class="span">Maestro: ${r.maestro}</p>
+                            </div>
+
+                            <div class="icon-box">
+                                <p class="span">Costo: $${r.costo}</p>
+                            </div>
+
+                          
+                                <a type="button" class="btn btn-success btn-seleccionar" href="${BASE_URL}/detallescurso/${r.id}">
+                                    Seleccionar
+                                </a>
+                        </div>
                     </div>
-                </div>
-                `;
+`;
             });
 
             $("#contenedor-cursos").html(html);

@@ -2,14 +2,14 @@
     #contenedor-cursos {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-        gap: 25px;
+        gap: 20px;
         padding: 30px;
     }
 
     /* CARD */
     .card {
         display: flex;
-        height: 220px;
+        height: 310px;
         /* más rectangular */
         width: 100%;
         background: white;
@@ -27,7 +27,7 @@
     /* IMAGEN IZQUIERDA */
     .img {
         width: 40%;
-        height: 100%;
+        height: 50%;
         /* 🔥 ocupa todo el alto */
         background-size: cover;
         /* 🔥 se adapta bien */
@@ -37,12 +37,10 @@
 
     /* CONTENIDO DERECHA */
     .text {
-        width: 60%;
-        padding: 15px;
+        width: 90%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        /* 🔥 separa texto y botón */
+        text-align: right;
     }
 
     /* TITULO */
@@ -64,8 +62,8 @@
 
     /* BOTÓN */
     .btn-seleccionar {
-        margin-top: 10px;
-        align-self: flex-start;
+        align-self: flex-end;
+        width: 30%
     }
 </style>
 

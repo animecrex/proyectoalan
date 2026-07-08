@@ -10,8 +10,6 @@
     <meta name="base-url" content="http://localhost/proyectoalan">
     <link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/estilos.css') }}">
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 @endsection
@@ -41,7 +39,7 @@
                     <div class="d-flex flex-column flex-column-fluid">
 
                         @include('cursos.cursodis')
-]
+
          
                     </div>
                     <br>
@@ -64,5 +62,5 @@
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 
     <script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/cursoss/cursos.js') }}"></script>
+    <script src="{{ asset('assets/js/cursoss/cursos.js?v=1.0.2') }}"></script>
 @endsection

@@ -10,7 +10,6 @@
     <meta name="base-url" content="http://localhost/proyectoalan">
     <link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
-    
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 @endsection
@@ -28,7 +27,7 @@
                     autocomplete="off">
                     <div class="d-flex flex-column flex-column-fluid">
 
-                        @include('maestros.index')
+                        @include('cursos.pagcurso')
 
          
                     </div>
@@ -52,5 +51,5 @@
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 
     <script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/cursoss/cursos.js') }}"></script>
+    <script src="{{ asset('assets/js/cursoss/cursos.js?v=1.0.2') }}"></script>
 @endsection

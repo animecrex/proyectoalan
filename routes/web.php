@@ -6,6 +6,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CrearcursoController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\MaestrosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +23,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
     route::get('/crearcurso', [CrearcursoController::class, 'vista'])->name('crearcurso');
+    
     route::post('/registrarcurso', [CrearcursoController::class, 'registrar'])->name('registrarcurso');
     Route::get('/crearcurso/traercursos', [CrearcursoController::class, 'traercursos']);
-    Route::get('/curso/traercursos', [CrearcursoController::class, 'traercursos']);
-    
+    Route::get('/curso/traercursos', [CrearcursoController::class, 'traertodoscursos']);
+    Route::get('/detallescurso/{id}', [CrearcursoController::class, 'detallescurso'])->name('detallescurso');
+    Route::post('/crearcurso/eliminarcurso/{id}', [CrearcursoController::class, 'eliminar'])->name('eliminarcurso');
+    Route::get('/maestros', [MaestrosController::class, 'indexmaestros'])->name('maestros');
  
 });
 
@@ -34,14 +38,7 @@ Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
 
-// Ruta para ver el apartado de maestros
-Route::get('/maestros', function () {
-    return view('maestros.index');
-})->name('maestros');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
