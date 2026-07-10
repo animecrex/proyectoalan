@@ -30,7 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/detallescurso/{id}', [CrearcursoController::class, 'detallescurso'])->name('detallescurso');
     Route::post('/crearcurso/eliminarcurso/{id}', [CrearcursoController::class, 'eliminar'])->name('eliminarcurso');
     Route::get('/maestros', [MaestrosController::class, 'indexmaestros'])->name('maestros');
- 
+    Route::post('/maestros', [MaestrosController::class, 'guardar'])->name('maestros.guardar');
 });
 
 Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
