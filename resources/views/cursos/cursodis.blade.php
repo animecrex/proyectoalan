@@ -1,70 +1,57 @@
 <style>
-    #contenedor-cursos {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-        gap: 20px;
-        padding: 30px;
-    }
+  #contenedor-cursos{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(420px,1fr));
+    gap:20px;
+    padding:30px;
+}
 
-    /* CARD */
-    .card {
-        display: flex;
-        height: 310px;
-        /* más rectangular */
-        width: 100%;
-        background: white;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 10px 10px 25px #bebebe,
-            -10px -10px 25px #ffffff;
-        transition: 0.3s;
-    }
+.card{
+    display:flex;
+    width:100%;
+    height:300px;
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+}
 
-    .card:hover {
-        transform: translateY(-5px);
-    }
+.img{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
 
-    /* IMAGEN IZQUIERDA */
-    .img {
-        width: 40%;
-        height: 50%;
-        /* 🔥 ocupa todo el alto */
-        background-size: cover;
-        /* 🔥 se adapta bien */
-        background-position: center;
-        background-repeat: no-repeat;
-    }
+.img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
 
-    /* CONTENIDO DERECHA */
-    .text {
-        width: 90%;
-        display: flex;
-        flex-direction: column;
-        text-align: right;
-    }
+.text{
+    width:60%;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    text-align:left;
+}
 
-    /* TITULO */
-    .text .h3 {
-        font-size: 18px;
-        font-weight: bold;
-    }
+.h3{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
 
-    /* DESCRIPCIÓN */
-    .text .p {
-        font-size: 13px;
-        color: #777;
-    }
+.p{
+    color:#666;
+    margin-bottom:15px;
+}
 
-    /* INFO */
-    .icon-box {
-        font-size: 13px;
-    }
-
-    /* BOTÓN */
-    .btn-seleccionar {
-        align-self: flex-end;
-        width: 30%
-    }
+.btn-seleccionar{
+    align-self:flex-end;
+}
 </style>
 
 <div id="contenedor-cursos">
