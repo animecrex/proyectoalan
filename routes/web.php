@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CrearcursoController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\MaestrosController;
+use App\Http\Controllers\CursoregController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
     route::get('/crearcurso', [CrearcursoController::class, 'vista'])->name('crearcurso');
-    
+    Route::post('/suscribirse', [CursoregController::class, 'registrar'])->name('suscribirse');    
     route::post('/registrarcurso', [CrearcursoController::class, 'registrar'])->name('registrarcurso');
     Route::get('/crearcurso/traercursos', [CrearcursoController::class, 'traercursos']);
     Route::get('/curso/traercursos', [CrearcursoController::class, 'traertodoscursos']);
