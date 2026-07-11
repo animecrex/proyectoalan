@@ -104,3 +104,18 @@
 
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+    let table = $('#dt_search').DataTable({
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-MX.json'
+        }
+    });
+
+    // Conectar tu input al buscador
+    $('#buscador').on('keyup', function () {
+        table.search(this.value).draw();
+    });
+});
+</script>

@@ -14,6 +14,7 @@ use Hamcrest\Type\IsNumeric;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 
 class CrearcursoController extends Controller
 {
@@ -91,18 +92,40 @@ class CrearcursoController extends Controller
 
     public function traercursos()
     {
-        $cursos = Curso::where('user_id', Auth::id())->get();
+        $cursos = Curso::where('user_id', Auth::id())->get()->map(function ($curso) {
+            return [
+                'id' => $curso->id,
+                'nombre' => $curso->nombre,
+                'descripcion' => $curso->descripcion,
+                'maestro' => $curso->maestro,
+                'costo' => $curso->costo,
+                'imagen' => $curso->imagen,
+                'hash' => Crypt::encryptString($curso->id),
+            ];
+        });
+
         return response()->json($cursos);
     }
 
-   public function traertodoscursos()
+    public function traertodoscursos()
     {
-        $cursos = Curso::all();
+        $cursos = Curso::all()->map(function ($curso) {
+            $curso->hash = Crypt::encryptString($curso->id);
+            return $curso;
+        });
+
         return response()->json($cursos);
     }
+
 
     public function detallescurso($id)
     {
+        try {
+            $id = Crypt::decryptString($id);
+        } catch (\Exception $e) {
+            abort(404);
+        }
+
         $curso = Curso::findOrFail($id);
         return view('cursos.detalles', compact('curso'));
     }

@@ -1,14 +1,39 @@
 <style>
-img {
-    width: 500%;
-    height: 50%;
-    align-items: start;
-    height: auto;
-}
+    img {
+        width: 500%;
+        height: 50%;
+        align-items: start;
+        height: auto;
+    }
+
+
+    .modal-content {
+        background-color: rgb(255, 255, 255);
+        color: white;
+        margin-top: 20%;
+        margin-left: 25%;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
 </style>
 <div class="container mt-5">
     <div class="row">
-        
+
         <div class="col-md-6">
             <img src="{{ asset('storage/' . $curso->imagen) }}" class="img-fluid">
         </div>
@@ -31,11 +56,41 @@ img {
 
             <p><strong>Requisitos:</strong> {{ $curso->requisitos }}</p>
 
-            
 
-            <button class="btn btn-success w-100 mb-2">
-                Suscribirse al Curso
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPago">
+                Suscribirse
             </button>
+
+
+
+            <div class="modal" id="modalPago" style="display:none;">
+                <div class="modal-content p-4">
+                    <h2>{{ $curso->nombre }}</h2>
+
+                    <p style="font-size: 18px; color: #000000;"><strong>Total a Pagar: $ {{ $curso->costo }}</strong></p>
+
+                    <label>Selecciona una tarjeta para realizar el pago:</label>
+
+                    <div class="form-group">
+                        <select class="form-control" id="tarjetaSelect">
+                            <option selected>Seleccione una tarjeta</option>
+                            {{-- @foreach ($tarjetas as $tarjeta)
+                                <option value="{{ $tarjeta->id }}">{{ $tarjeta->numero_tarjeta }}</option>
+                            {{-- @foreach ($tarjetas as $tarjeta)
+                                <option value="{{ $tarjeta->id }}">{{ $tarjeta->numero_tarjeta }}</option>
+                            @endforeach --}}
+                        </select>
+
+                    </div>
+
+
+                    <button type="submit" class="btn btn-success" id="pagarBtn">Pagar</button>
+                    <button type="button" class="btn btn-secondary" id="cerrarModalBtn">Cerrar</button>
+
+
+                </div>
+            </div>
 
 
         </div>
