@@ -8,7 +8,6 @@
     <meta name="description" content="Sistema de Gestiones" />
     <meta name="keywords" content="gestiones" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="google" content="notranslate">
     <meta property="og:locale" content="es_MX" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="ATENCIÓN CIUDADANA - Gestiones" />
