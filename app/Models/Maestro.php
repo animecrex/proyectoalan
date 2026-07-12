@@ -18,4 +18,6 @@ class Maestro extends Model
         'materia',
         'turno',
     ];
+    
+    public $timestamps = false;
 }
