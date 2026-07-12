@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-<!--begin::Head-->
-
 <head>
     <title>Curso+</title>
     <meta charset="utf-8" />
@@ -15,38 +13,25 @@
     <meta property="og:site_name" content="ATENCIÓN CIUDADANA - Gestiones" />
     <link rel="canonical" href="http://preview.keenthemes.comauthentication/layouts/fancy/sign-in.html" />
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
-    <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-    <!--end::Fonts-->
-    <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+    
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <!--end::Global Stylesheets Bundle-->
     <style>
         .relative.inline-flex.items-center {
             display: none;
         }
     </style>
     <script>
-        // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }
     </script>
 </head>
-<!--end::Head-->
-<!--begin::Body-->
 
 <body id="kt_body" class="app-blank">
 
     <div class="d-flex flex-column flex-root" id="kt_app_root">
-        <!--begin::Authentication - Sign-in -->
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
-            <!--begin::Logo-->
-            
-            <!--end::Logo-->
-            <!--begin::Aside-->
             <div class="d-flex flex-column flex-column-fluid flex-center w-lg-50 p-10">
-                <!--begin::Wrapper-->
                 <div class="d-flex justify-content-between flex-column-fluid flex-column w-100 mw-450px">
-                    <!--begin::Header-->
                     <div class="d-flex flex-stack py-2">
                     </div>
                     <div class="py-20">
@@ -82,18 +67,13 @@
                                 </div>
 
                                 <div class="d-flex flex-stack">
-                                    <!--begin::Submit-->
                                     <button id="kt_sign_in_submit" class="btn btn-secondary me-2 flex-shrink-0">
-                                        <!--begin::Indicator label-->
                                         <span class="indicator-label" data-kt-translate="sign-in-submit">Iniciar
                                             Sesión</span>
-                                        <!--end::Indicator label-->
-                                        <!--begin::Indicator progress-->
                                         <span class="indicator-progress">
                                             <span data-kt-translate="general-progress">Por favor espere...</span>
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                         </span>
-                                        <!--end::Indicator progress-->
                                     </button>
                                 </div>
                                  <div class="text-gray-500 text-center fw-semibold fs-6">
@@ -122,6 +102,7 @@
         <script>
             var hostUrl = "{{ asset('assets/') }}";
         </script>
+        
         <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
         <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
         <script>
