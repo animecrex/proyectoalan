@@ -22,13 +22,15 @@ Route::get('/', function () {
 //para rutas importantes meter dentro de este grupo de middleware, para que solo puedan acceder usuarios autenticados y verificados
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
-    route::get('/crearcurso', [CrearcursoController::class, 'vista'])->name('crearcurso');
-    Route::post('/suscribirse', [CursoregController::class, 'registrar'])->name('suscribirse');    
-    route::post('/registrarcurso', [CrearcursoController::class, 'registrar'])->name('registrarcurso');
+    Route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
+    Route::get('/crearcurso', [CrearcursoController::class, 'vista'])->name('crearcurso');
+    Route::post('/suscribirse', [CursoregController::class, 'registrarsubs'])->name('suscribirse');
+    Route::post('/desuscribirse', [CursoregController::class, 'desuscribirse'])->name('desuscribirse');
+    Route::get('/suscripcion/estado', [CursoregController::class, 'estado'])->name('suscripcion.estado');
+    Route::get('/detallescurso/{id}', [CrearcursoController::class, 'detallescurso'])->name('detallescurso');
+    Route::post('/registrarcurso', [CrearcursoController::class, 'registrar'])->name('registrarcurso');
     Route::get('/crearcurso/traercursos', [CrearcursoController::class, 'traercursos']);
     Route::get('/curso/traercursos', [CrearcursoController::class, 'traertodoscursos']);
-    Route::get('/detallescurso/{id}', [CrearcursoController::class, 'detallescurso'])->name('detallescurso');
     Route::post('/crearcurso/eliminarcurso/{id}', [CrearcursoController::class, 'eliminar'])->name('eliminarcurso');
     Route::get('/maestros', [MaestrosController::class, 'indexmaestros'])->name('maestros');
     Route::post('/maestros', [MaestrosController::class, 'guardar'])->name('maestros.guardar');

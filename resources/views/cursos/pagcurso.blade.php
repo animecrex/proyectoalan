@@ -58,17 +58,17 @@
 
 
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPago">
-                Suscribirse
+            <button type="button" class="btn btn-primary" id="btn-inscripcion" data-curso-id="{{ $curso->id }}">
+                Cargando...
             </button>
-
 
 
             <div class="modal" id="modalPago" style="display:none;">
                 <div class="modal-content p-4">
                     <h2>{{ $curso->nombre }}</h2>
 
-                    <p style="font-size: 18px; color: #000000;"><strong>Total a Pagar: $ {{ $curso->costo }}</strong></p>
+                    <p style="font-size: 18px; color: #000000;"><strong>Total a Pagar: $ {{ $curso->costo }}</strong>
+                    </p>
 
                     <label>Selecciona una tarjeta para realizar el pago:</label>
 
@@ -85,7 +85,9 @@
                     </div>
 
 
-                    <button type="submit" class="btn btn-success" id="pagarBtn">Pagar</button>
+                    <button type="button" class="pagarBtn btn btn-primary" data-curso-id="{{ $curso->id }}">
+                        Inscribirse
+                    </button>
                     <button type="button" class="btn btn-secondary" id="cerrarModalBtn">Cerrar</button>
 
 
