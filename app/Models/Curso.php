@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Curso extends Model
 {
@@ -27,4 +28,13 @@ class Curso extends Model
     ];
 
     public $timestamps = false;
+    public function cursosSuscritos()
+    {
+        return $this->belongsToMany(
+            \App\Models\Curso::class,
+            'cursos_reg',
+            'id_user',
+            'id_curso'
+        );
+    }
 }
