@@ -2,19 +2,19 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Middleware\TrustHosts as Middleware;
+use Closure;
+use Illuminate\Http\Request;
 
-class TrustHosts extends Middleware
+class SecurityHeaders
 {
-    /**
-     * Get the host patterns that should be trusted.
-     *
-     * @return array<int, string|null>
-     */
-    public function hosts()
+    public function handle(Request $request, Closure $next)
     {
-        return [
-            $this->allSubdomainsOfApplicationUrl(),
-        ];
+        return $next($request)
+            ->header('X-Content-Type-Options', 'nosniff')
+            ->header('X-Frame-Options', 'SAMEORIGIN')
+            ->header('X-XSS-Protection', '1; mode=block')
+            ->header('Referrer-Policy', 'no-referrer-when-downgrade')
+            ->header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
+            ->header('Content-Security-Policy', "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';");
     }
 }

@@ -16,7 +16,7 @@ $("#guardar_curso").on("click", function (event) {
     formData.append("requisitos", $("#requisitos").val());
     formData.append("fecha_inicio", $("#fecha_inicio").val());
 
-    // 🔥 ESTA ES LA CLAVE
+    
     let imagen = $("#imagen")[0].files[0];
 
     if (imagen !== undefined) {
@@ -57,7 +57,7 @@ $("#guardar_curso").on("click", function (event) {
 
         success: function (response) {
             console.log(response);
-            cargarTodos(); // 🔥 recarga sin refrescar página
+            cargarTodos(); 
             Swal.fire({
                 icon: "success",
                 title: "Curso registrado correctamente",
@@ -102,7 +102,7 @@ function cargarTodos() {
                     `<span class="badge-costo">$${r.costo}</span>`,
                     `<img src="${BASE_URL}/storage/${r.imagen}" class="img-curso">`,
                     `
-                    <a href="${BASE_URL}/detallescurso/${r.id}" class="btn btn-action btn-ver">Ver</a>
+                    <a href="${BASE_URL}/detallescurso/${r.hash}" class="btn btn-action btn-ver">Ver</a>
                     <button type="button" class="btn btn-action btn-eliminar" data-id="${r.id}">Eliminar</button>
                     `,
                 ]);

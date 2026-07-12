@@ -4,6 +4,12 @@ $(document).ready(function () {
     cargarTodos();
 });
 
+$(document).on("click", "#pagarBtn", function () {
+    let cursoId = $(this).data("curso-id");
+    let userId = $(this).data("user-id");
+    registrarCurso(cursoId, userId);
+});
+
 function cargarTodos() {
     $.ajax({
         url: `${BASE_URL}/curso/traercursos`,
@@ -63,9 +69,6 @@ function registrarCurso(cursoId, userId) {
                 text: "Te has registrado en el curso correctamente.",
                 icon: "success",
                 confirmButtonText: "Aceptar",
-            }).then(() => {
-                // Redirigir a una página de éxito o mostrar un mensaje de éxito
-                window.location.href = `${BASE_URL}/cursos`;
             });
         },
         error: function (xhr) {
@@ -73,6 +76,8 @@ function registrarCurso(cursoId, userId) {
         },
     });
 }
+
+
 
 document.getElementById("abrirModalBtn").addEventListener("click", function () {
     document.getElementById("modalPago").style.display = "block";
