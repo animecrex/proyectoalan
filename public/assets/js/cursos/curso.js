@@ -16,7 +16,6 @@ $("#guardar_curso").on("click", function (event) {
     formData.append("requisitos", $("#requisitos").val());
     formData.append("fecha_inicio", $("#fecha_inicio").val());
 
-    // 🔥 ESTA ES LA CLAVE
     let imagen = $("#imagen")[0].files[0];
 
     if (imagen !== undefined) {
@@ -56,8 +55,7 @@ $("#guardar_curso").on("click", function (event) {
         },
 
         success: function (response) {
-            console.log(response);
-            cargarTodos(); // 🔥 recarga sin refrescar página
+            cargarTodos();
             Swal.fire({
                 icon: "success",
                 title: "Curso registrado correctamente",
@@ -73,12 +71,41 @@ $("#guardar_curso").on("click", function (event) {
 });
 
 $(document).ready(function () {
+    const DataTableFn = $.fn.DataTable || $.fn.dataTable;
+
+    if (!DataTableFn) {
+        console.warn("DataTables no está cargado; se omitirá la inicialización de la tabla.");
+        cargarTodos();
+        return;
+    }
+
+    if (DataTableFn.isDataTable("#dt_search")) {
+        $("#dt_search").DataTable().destroy();
+    }
+
     window.t = $("#dt_search").DataTable({
         responsive: true,
         autoWidth: false,
         language: {
-            url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json",
+            processing: "Procesando...",
+            search: "Buscar:",
+            lengthMenu: "Mostrar _MENU_ registros",
+            info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            infoEmpty: "No hay registros disponibles",
+            infoFiltered: "(filtrado de _MAX_ registros totales)",
+            emptyTable: "No hay datos disponibles en la tabla",
+            zeroRecords: "No se encontraron coincidencias",
+            paginate: {
+                first: "Primero",
+                previous: "Anterior",
+                next: "Siguiente",
+                last: "Último",
+            },
         },
+    });
+
+    $("#buscador").on("keyup", function () {
+        window.t.search(this.value).draw();
     });
 
     cargarTodos();
@@ -102,20 +129,21 @@ function cargarTodos() {
                     `<span class="badge-costo">$${r.costo}</span>`,
                     `<img src="${BASE_URL}/storage/${r.imagen}" class="img-curso">`,
                     `
-                    <a href="${BASE_URL}/detallescurso/${r.id}" class="btn btn-action btn-ver">Ver</a>
+                    <a href="${BASE_URL}/detallescurso/${r.hash}" class="btn btn-action btn-ver">Ver</a>
                     <button type="button" class="btn btn-action btn-eliminar" data-id="${r.id}">Eliminar</button>
                     `,
                 ]);
             });
 
-            window.t.clear().rows.add(dataSet).draw();
+            if (window.t) {
+                window.t.clear().rows.add(dataSet).draw();
+            }
         },
         error: function (xhr) {
             console.error("ERROR:", xhr.responseText);
         },
     });
 }
-
 
 $(document).on("click", ".btn-eliminar", function () {
     let id = $(this).data("id");
@@ -136,11 +164,17 @@ function eliminarCurso(id) {
                 url: `${BASE_URL}/crearcurso/eliminarcurso/${id}`,
                 type: "POST",
                 headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content",
+                    ),
                 },
                 success: function () {
                     cargarTodos();
-                    Swal.fire("Eliminado", "Curso eliminado correctamente", "success");
+                    Swal.fire(
+                        "Eliminado",
+                        "Curso eliminado correctamente",
+                        "success",
+                    );
                 },
             });
         }

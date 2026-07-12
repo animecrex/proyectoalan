@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-<!--begin::Head-->
 
 <head>
     <title>Curso+</title>
@@ -13,92 +12,70 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="canonical" href="http://preview.keenthemes.comauthentication/layouts/fancy/sign-in.html" />
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
-    <!--begin::Fonts(mandatory for all pages)-->
-
-    <!--end::Fonts-->
-    <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <!--end::Global Stylesheets Bundle-->
     <style>
         .relative.inline-flex.items-center {
             display: none;
         }
     </style>
-    <script>
-        // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }
-    </script>
+    <script></script>
 </head>
-<!--end::Head-->
-<!--begin::Body-->
 
 <body id="kt_body" class="app-blank">
 
     <div class="d-flex flex-column flex-root" id="kt_app_root">
-        <!--begin::Authentication - Sign-in -->
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
-            <!--begin::Logo-->
-
-            <!--end::Logo-->
-            <!--begin::Aside-->
             <div class="d-flex flex-column flex-column-fluid flex-center w-lg-50 p-10">
-                <!--begin::Wrapper-->
                 <div class="d-flex justify-content-between flex-column-fluid flex-column w-100 mw-450px">
-                    <!--begin::Header-->
                     <div class="d-flex flex-stack py-2">
                     </div>
                     <div class="py-20">
                         <form id="registerForm" method="POST" class="form w-100" novalidate>
                             @csrf
 
-                            
+
                             <div class="text-center mb-11">
                                 <h1 class="text-gray-900 fw-bolder mb-3">Crear Cuenta</h1>
                                 <div class="text-gray-500 fw-semibold fs-6">Regístrate para continuar</div>
                             </div>
 
-                            <!-- Nombre -->
                             <div class="fv-row mb-8">
                                 <input type="text" placeholder="Nombre completo" id="name" name="name"
                                     class="form-control bg-transparent" required />
                             </div>
-                            <!-- Usuario -->
                             <div class="fv-row mb-8">
                                 <input type="text" placeholder="Usuario" maxlength="20" id="usuario" name="usuario"
                                     class="form-control bg-transparent" required />
                             </div>
 
-                            <!-- Email -->
                             <div class="fv-row mb-8">
                                 <input type="email" placeholder="Correo electrónico" id="email" name="email"
                                     class="form-control bg-transparent" required />
                             </div>
 
-                            <!-- Password -->
                             <div class="fv-row mb-8">
                                 <input type="password" placeholder="Contraseña" id="password" name="password"
                                     class="form-control bg-transparent" required />
                             </div>
 
-                            <!-- Confirm Password -->
+
                             <div class="fv-row mb-8">
                                 <input type="password" placeholder="Confirmar contraseña" id="password_confirmation"
                                     name="password_confirmation" class="form-control bg-transparent" required />
                             </div>
 
-                            <!-- Botón -->
                             <div class="d-grid mb-10">
                                 <button type="submit" id="registerButton" class="btn btn-primary">
                                     <span class="indicator-label">Registrarse</span>
                                 </button>
                             </div>
 
-                            <!-- Link login -->
                             <div class="text-gray-500 text-center fw-semibold fs-6">
                                 ¿Ya tienes cuenta?
                                 <a href="{{ route('login') }}" class="link-primary">Inicia sesión</a>
                             </div>
-                            
+
 
                         </form>
 
@@ -131,9 +108,9 @@
                 history.go(1);
             };
         </script>
-        
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script src="{{ asset('assets/js/registro/registro.js?v=1.0.2') }}"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{{ asset('assets/js/registro/registro.js?v=1.0.2') }}"></script>
     </div>
 </body>
 

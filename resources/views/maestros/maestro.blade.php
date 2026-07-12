@@ -41,6 +41,7 @@
 
 @section('javascript')
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery.repeater@1.2.1/jquery.repeater.min.js"></script>
+    <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
+
     <script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
 @endsection
