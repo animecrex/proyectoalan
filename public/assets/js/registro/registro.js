@@ -22,7 +22,6 @@ $(document).ready(function () {
                     text: response.message
                 });
 
-                // limpiar formulario
                 $("#registerForm")[0].reset();
             },
             error: function (xhr) {

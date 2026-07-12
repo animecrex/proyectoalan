@@ -58,8 +58,6 @@
         background: #4338ca;
     }
 
-    /* SEPARACIÓN */
-   
 </style>
 
 <div class="form-card">

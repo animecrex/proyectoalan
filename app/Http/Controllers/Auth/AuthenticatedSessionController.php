@@ -11,20 +11,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
+    
     public function create(): View
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
+  
     public function store(Request $request)
     {
         if ($request->session()->token() !== $request->input('_token')) {
@@ -36,8 +33,8 @@ class AuthenticatedSessionController extends Controller
         $usuario = trim($request->input('usuario'));
         $password = trim($request->input('password'));
 
-        //  Buscar usuario
-        $user = \App\Models\User::where('usuario', $usuario)->first();
+        
+        $user = User::where('usuario', $usuario)->first();
 
         if (!$user) {
             throw ValidationException::withMessages([
@@ -52,7 +49,7 @@ class AuthenticatedSessionController extends Controller
         //])->redirectTo('/login');
         //}
 
-        //  Intentar login
+      
         if (Auth::attempt([
             'usuario' => $usuario,
             'password' => $password
@@ -80,9 +77,7 @@ class AuthenticatedSessionController extends Controller
         ])->redirectTo('/login');
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
+ 
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
