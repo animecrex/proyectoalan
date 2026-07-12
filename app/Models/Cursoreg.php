@@ -10,4 +10,8 @@ class Cursoreg extends Model
     use HasFactory;
 
     protected $table = 'cursos_reg';
+
+    protected $fillable = ['id_curso', 'id_user'];
+
+    public $timestamps = false;
 }
