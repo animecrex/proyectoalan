@@ -46,7 +46,6 @@ class CrearcursoController extends Controller
             $nombreimagen = time() . '.' . $imagen->getClientOriginalExtension();
             $ruta = storage_path('app/public/images/' . $nombreimagen);
 
-            // Crear imagen con Intervention v2
             $img = Image::make($imagen)->resize(300, 300);
 
             $img->save($ruta);
@@ -93,15 +92,9 @@ class CrearcursoController extends Controller
     public function traercursos()
     {
         $cursos = Curso::where('user_id', Auth::id())->get()->map(function ($curso) {
-            return [
-                'id' => $curso->id,
-                'nombre' => $curso->nombre,
-                'descripcion' => $curso->descripcion,
-                'maestro' => $curso->maestro,
-                'costo' => $curso->costo,
-                'imagen' => $curso->imagen,
-                'hash' => Crypt::encryptString($curso->id),
-            ];
+            $curso->hash = Crypt::encryptString($curso->id);
+            return $curso;
+        
         });
 
         return response()->json($cursos);
