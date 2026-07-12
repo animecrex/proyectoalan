@@ -218,11 +218,9 @@
 
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
-                            <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                                data-kt-menu-placement="left-end" data-kt-menu-offset="-15px, 0">
-                                <a href="#" class="menu-link px-5">
-                                    <span class="menu-title">Mi subcripciones</span>
-                                    <span class="menu-arrow"></span>
+                            <div class="menu-item px-5">
+                                <a href="{{ route('mis-suscripciones') }}" class="menu-link px-5">
+                                    Mis suscripciones
                                 </a>
                             </div>
 
