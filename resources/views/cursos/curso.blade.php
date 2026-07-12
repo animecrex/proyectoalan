@@ -36,6 +36,8 @@
             <div id="kt_app_content_container" class="app-container container-xxl">
                 <form name="" id="" class="form" method="POST" enctype="multipart/form-data"
                     autocomplete="off">
+                     @csrf
+                     
                     <div class="d-flex flex-column flex-column-fluid">
 
                         @include('cursos.cursodis')

@@ -27,7 +27,8 @@
             <div class="app-container container-xxl">
 
                 <form id="registrarcurso" method="POST" enctype="multipart/form-data" autocomplete="off">
-
+                     @csrf
+                     
                     @include('crearcurso.crearcurs')
 
                     <div class="text-center mt-5">
