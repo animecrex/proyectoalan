@@ -57,7 +57,6 @@
     .btn-guardar:hover {
         background: #4338ca;
     }
-
 </style>
 
 <div class="form-card">
@@ -82,8 +81,15 @@
         </div>
 
         <div class="col-12 col-sm-6 col-lg-4">
-            <label class="form-label">Maestro</label>
-            <input type="text" id="maestro" class="form-control">
+            <label class="form-label fw-semibold">Maestro</label>
+            <select id="maestro" name="maestro" class="form-select">
+                <option value="">Seleccione un maestro</option>
+                @foreach ($maestros as $maestro)
+                    <option value="{{ $maestro->id }}">
+                        {{ $maestro->nombre }} {{ $maestro->apellido_paterno }} {{ $maestro->apellido_materno }}
+                    </option>
+                @endforeach
+            </select>
         </div>
 
         <div class="col-12 col-sm-6 col-lg-4">

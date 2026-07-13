@@ -15,12 +15,14 @@ use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\Maestro;
 
 class CrearcursoController extends Controller
 {
     public function vista()
     {
-        return view('crearcurso.crearcursos');
+        $maestros = Maestro::all();
+        return view('crearcurso.crearcursos', compact('maestros'));
     }
 
 
@@ -36,6 +38,14 @@ class CrearcursoController extends Controller
             'imagen' => ['nullable', 'image'],
             'costo' => ['required', 'numeric', 'min:0'],
         ]);
+
+        $maestro = Maestro::find($request->maestro);
+
+        $nombreMaestro = null;
+
+        if ($maestro) {
+            $nombreMaestro = $maestro->nombre . ' ' . $maestro->apellido_paterno . ' ' . $maestro->apellido_materno;
+        }
 
         $rutaDocumento = null;
 
@@ -57,7 +67,7 @@ class CrearcursoController extends Controller
             'nombre' => $request->nombre,
             'descripcion' => $request->desc,
             'cant_alumnos' => $request->max_alumnos,
-            'maestro' => $request->maestro,
+            'maestro' => $nombreMaestro,
             'horas' => $request->horas,
             'imagen' => $rutaDocumento,
             'costo' => $request->costo,
@@ -94,7 +104,6 @@ class CrearcursoController extends Controller
         $cursos = Curso::where('user_id', Auth::id())->get()->map(function ($curso) {
             $curso->hash = Crypt::encryptString($curso->id);
             return $curso;
-        
         });
 
         return response()->json($cursos);

@@ -3,6 +3,7 @@
     data-kt-app-sidebar-push-footer="true" data-kt-app-sidebar-stacked="true" data-kt-app-sidebar-secondary-enabled="false"
     data-kt-app-toolbar-enabled="true" class="app-default">
 
+    
     <div class="d-flex flex-column flex-column-fluid">
 
         <div id="kt_app_toolbar" class="app-toolbar py-4 py-lg-8" data-kt-sticky="true"
