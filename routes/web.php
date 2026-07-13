@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
@@ -20,6 +21,10 @@ use App\Http\Controllers\CursoController;
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
+
+
+Route::get('/vistaperfil', [PerfilController::class, 'vistaperfil'])->name('vistaperfil');
 //para rutas importantes meter dentro de este grupo de middleware, para que solo puedan acceder usuarios autenticados y verificados
 Route::middleware(['auth', 'verified'])->group(function () {
     route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
