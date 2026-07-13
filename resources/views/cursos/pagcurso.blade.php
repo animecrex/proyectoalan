@@ -31,6 +31,9 @@
         cursor: pointer;
     }
 </style>
+<div>
+    <button type="button" class="btn btn-outline-info" href="{{ route('curso') }}"> Regresar</button>
+</div>
 <div class="container mt-5">
     <div class="row">
 
