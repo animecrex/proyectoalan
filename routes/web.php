@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
@@ -19,6 +20,9 @@ use App\Http\Controllers\SuscripcionController;
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
+
+Route::get('/vistaperfil', [ProfileController::class, 'vistaperfil'])->name('vistaperfil');
 
 //para rutas importantes meter dentro de este grupo de middleware, para que solo puedan acceder usuarios autenticados y verificados
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -61,6 +65,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/registrar-tarjeta', [ProfileController::class, 'registrartarjetas'])->name('registrar.tarjeta');
+    Route::get('/tarjeta/{tarjeta}', [ProfileController::class, 'editarTarjeta'])->name('tarjeta.editar');
+    Route::put('/tarjeta/{tarjeta}', [ProfileController::class, 'actualizarTarjeta'])->name('tarjeta.actualizar');
 });
 
 require __DIR__.'/auth.php';
