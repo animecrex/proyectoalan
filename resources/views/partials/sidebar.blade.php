@@ -137,7 +137,7 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="account/overview.html" class="menu-link px-5">Mi perfil</a>
+                                <a href="{{ route('vistaperfil')}}" class="menu-link px-5">Mi perfil</a>
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->

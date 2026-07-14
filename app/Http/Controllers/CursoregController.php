@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cursoreg;
+use App\Models\Tarjetas;
 use Illuminate\Http\Request;
 
 class CursoregController extends Controller
@@ -16,12 +17,26 @@ class CursoregController extends Controller
 
             $cursoId = $request->input('id_curso');
             $userId = auth()->id();
+            $tarjetaId = $request->input('id_tarjeta');
 
             if (!$userId) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Debes iniciar sesión para inscribirte.'
                 ], 401);
+            }
+
+            if ($tarjetaId) {
+                $tarjeta = Tarjetas::where('id', $tarjetaId)
+                    ->where('usuario_id', $userId)
+                    ->first();
+
+                if (!$tarjeta) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Debes seleccionar una tarjeta registrada para suscribirte.'
+                    ], 422);
+                }
             }
 
             $exists = Cursoreg::where('id_curso', $cursoId)
