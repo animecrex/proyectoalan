@@ -16,6 +16,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\Maestro;
+use App\Models\Tarjetas;
 
 class CrearcursoController extends Controller
 {
@@ -121,14 +122,17 @@ class CrearcursoController extends Controller
 
 
     public function detallescurso($id)
-    {
-        try {
-            $id = Crypt::decryptString($id);
-        } catch (\Exception $e) {
-            abort(404);
-        }
-
-        $curso = Curso::findOrFail($id);
-        return view('cursos.detalles', compact('curso'));
+{
+    try {
+        $id = Crypt::decryptString($id);
+    } catch (\Exception $e) {
+        abort(404);
     }
+
+    $curso = Curso::findOrFail($id);
+
+    $tarjetas = Tarjetas::where('usuario_id', Auth::id())->get();
+
+    return view('cursos.detalles', compact('curso', 'tarjetas'));
+}
 }

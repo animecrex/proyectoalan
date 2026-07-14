@@ -54,7 +54,20 @@ function cargarTodos() {
 $(document).on("click", ".pagarBtn", function () {
     let cursoId = $(this).data("curso-id");
     let $btn = $("#modalPago").data("btn-target");
-    registrarCurso(cursoId, $btn);
+    const tarjetaId = $("#tarjetaSelect").val();
+
+    if (!tarjetaId) {
+        Swal.fire({
+            title: "Sin tarjeta",
+            text: "Debes seleccionar una tarjeta registrada para suscribirte.",
+            icon: "warning",
+            confirmButtonText: "Aceptar",
+        });
+        return;
+    }
+
+    registrarCurso(cursoId, $btn, tarjetaId);
+    verificarEstadoSuscripcion();
     cerrarModalPago();
 });
 
@@ -119,13 +132,14 @@ function abrirModalPago(cursoId, $btn) {
     $("body").addClass("modal-open");
 }
 
-function registrarCurso(cursoId, $btn) {
+function registrarCurso(cursoId, $btn, tarjetaId) {
     $.ajax({
         url: `${BASE_URL}/suscribirse`,
         type: "POST",
         dataType: "json",
         data: {
             id_curso: cursoId,
+            id_tarjeta: tarjetaId,
             _token: csrfToken,
         },
         headers: {

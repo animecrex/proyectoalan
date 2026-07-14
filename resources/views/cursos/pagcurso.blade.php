@@ -32,7 +32,10 @@
     }
 </style>
 <div>
-    <button type="button" class="btn btn-outline-info" href="{{ route('curso') }}"> Regresar</button>
+    <button type="button" class="btn btn-info"> <a class="menu-link fs-5 fw-bolder ps-1 py-1"
+            href="{{ route('curso') }}" style="color: white">
+            Regresar
+        </a> </button>
 </div>
 <div class="container mt-5">
     <div class="row">
@@ -75,20 +78,25 @@
 
                     <label>Selecciona una tarjeta para realizar el pago:</label>
 
+
                     <div class="form-group">
                         <select class="form-control" id="tarjetaSelect">
-                            <option selected>Seleccione una tarjeta</option>
-                            {{-- @foreach ($tarjetas as $tarjeta)
-                                <option value="{{ $tarjeta->id }}">{{ $tarjeta->numero_tarjeta }}</option>
-                            {{-- @foreach ($tarjetas as $tarjeta)
-                                <option value="{{ $tarjeta->id }}">{{ $tarjeta->numero_tarjeta }}</option>
-                            @endforeach --}}
+                            <option value="">Seleccione una tarjeta</option>
+                            @foreach ($tarjetas as $tarjeta)
+                                <option value="{{ $tarjeta->id }}">{{ $tarjeta->numero_tarjeta }} -
+                                    {{ $tarjeta->banco }}</option>
+                            @endforeach
                         </select>
-
                     </div>
 
+                    @if ($tarjetas->isEmpty())
+                        <div class="alert alert-warning mt-3" role="alert">
+                            No tienes tarjetas registradas. Regístrala antes de suscribirte.
+                        </div>
+                    @endif
 
-                    <button type="button" class="pagarBtn btn btn-primary" data-curso-id="{{ $curso->id }}">
+                    <button type="button" class="pagarBtn btn btn-primary" data-curso-id="{{ $curso->id }}"
+                        id="btnSuscribirse">
                         Inscribirse
                     </button>
                     <button type="button" class="btn btn-secondary" id="cerrarModalBtn">Cerrar</button>
