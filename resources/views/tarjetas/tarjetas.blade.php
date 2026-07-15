@@ -61,7 +61,7 @@
                 @endphp
 
                 <div class="row g-6">
-                    @forelse($cards as $card)
+                    @forelse($cards ?? [] as $card)
                         <div class="col-xl-6">
                             <div class="card card-payment shadow-sm">
                                 <div class="card-body">
