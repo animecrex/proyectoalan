@@ -22,10 +22,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('/vistaperfil', [ProfileController::class, 'vistaperfil'])->name('vistaperfil');
 
 //para rutas importantes meter dentro de este grupo de middleware, para que solo puedan acceder usuarios autenticados y verificados
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/vistaperfil', [ProfileController::class, 'vistaperfil'])->name('vistaperfil');
 
     route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
     route::get('/crearcurso', [CrearcursoController::class, 'vista'])->name('crearcurso');
@@ -47,19 +47,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/crearcurso/eliminarcurso/{id}', [CrearcursoController::class, 'eliminar'])->name('eliminarcurso');
     Route::get('/maestros', [MaestrosController::class, 'indexmaestros'])->name('maestros');
     Route::post('/maestros', [MaestrosController::class, 'guardar'])->name('maestros.guardar');
-});
+
 
 Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
-Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
+Route::get('/curso', [CursoController::class, 'indexcurso'])->name('curso');
 
-    Route::get('/mis-suscripciones', [SuscripcionController::class, 'index'])
-        ->name('mis-suscripciones');
+Route::get('/mis-suscripciones', [SuscripcionController::class, 'index'])
+->name('mis-suscripciones');
 });
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
